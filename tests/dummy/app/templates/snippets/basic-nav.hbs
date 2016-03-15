@@ -7,15 +7,14 @@
   {{#n.menu class="right" as |m|}}
     {{m.link-to 'C' 'nav' (query-params a="3")}}
     {{m.link-to 'D' 'nav' (query-params a="4")}}
-    {{#m.dropdown as |d|}}
-      {{d.trigger text='E'}}
-      {{#d.menu as |dm|}}
+    {{#m.btn text='E' as |b|}}
+      {{#b.dropdown as |dm|}}
         {{dm.link-to 'F' 'nav' (query-params a="5")}}
         {{dm.link-to 'G' 'nav' (query-params a="6")}}
         <li class="divider"></li>
         {{dm.link-to 'H' 'nav' (query-params a="7")}}
         {{dm.link-to 'I' 'nav' (query-params a="8")}}
-      {{/d.menu}}
-    {{/m.dropdown}}
+      {{/b.dropdown}}
+    {{/m.btn}}
   {{/n.menu}}
 {{/md-nav}}

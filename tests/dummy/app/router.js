@@ -15,6 +15,7 @@ Router.map(function() {
   this.route('button');
   this.route('card');
   this.route('loader');
+  this.route('toasts');
 });
 
 export default Router;

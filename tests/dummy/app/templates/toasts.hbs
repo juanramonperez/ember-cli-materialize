@@ -1,0 +1,16 @@
+{{#x-component-doc title="md-toasts" as |doc|}}
+  {{#doc.params as |p|}}
+    {{#p.param name="min" type="integer" default=1}}Minimum page number{{/p.param}}
+  {{/doc.params}}
+
+  {{#doc.actions as |a|}}
+    {{#a.action name="on-change"}}
+      Called whenever the currently selected item is changed
+    {{/a.action}}
+  {{/doc.actions}}
+{{/x-component-doc}}
+
+{{md-btn text='Basic Toast'
+  on-click=(action 'basicToast')}}
+
+{{x-example name='toast-basic'}}

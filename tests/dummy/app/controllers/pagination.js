@@ -4,5 +4,10 @@ const { Controller } = Ember;
 
 export default Controller.extend({
   queryParams: ['page'],
-  page: 2
+  page: 2,
+  actions: {
+    pageChanged() {
+
+    }
+  }
 });

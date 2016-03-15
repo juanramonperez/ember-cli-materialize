@@ -1,3 +1,4 @@
+{{md-toasts}}
 <div class="navbar-fixed">
 {{#md-nav as |n|}}
   {{#n.title 'index'}}
@@ -5,7 +6,17 @@
   {{#n.menu class='right' as |m|}}
     {{#m.btn text='Components' as |b|}}
       {{#b.dropdown as |d|}}
+        {{d.link-to 'Button' 'button'}}
+        {{d.link-to 'Card' 'card'}}
+        {{d.link-to 'Collapsible' 'collapsible'}}
+        {{d.link-to 'Collection' 'collection'}}
         {{d.link-to 'Forms' 'forms'}}
+        {{d.link-to 'Loader' 'loader'}}
+        {{d.link-to 'Nav' 'nav'}}
+        {{d.link-to 'Pagination' 'pagination'}}
+        {{d.link-to 'Side-Nav' 'sidenav'}}
+        <li class="divider"></li>
+        {{d.link-to 'Toasts' 'toasts'}}
       {{/b.dropdown}}
     {{/m.btn}}
   {{/n.menu}}
@@ -19,6 +30,3 @@
     </div>
   </div>
 </div>
-
-
-

@@ -10,6 +10,11 @@ module.exports = function(defaults) {
       includePaths: [
         'bower_components/materialize/sass'
       ]
+    },
+    inlineContent: {
+      body: {
+        content: '<div id=#pre-app-container></div>'
+      }
     }
   });
 
