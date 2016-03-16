@@ -5,10 +5,16 @@ const { computed, Mixin } = Ember;
 
 export default Mixin.create(ClickAction, {
   baseButtonClass: 'btn',
-  classNameBindings: ['_isWaves:waves-effect', '_waveType', 'baseButtonClass'],
+  classNameBindings: ['baseButtonClass', '_isWaves:waves-effect', '_waveType'],
   attributeBindings: ['disabled'],
   waves: 'light',
-  iconClass: 'left',
+  iconClass: computed('baseButtonClass', function() {
+    if (this.get('baseButtonClass').indexOf('floating') >= 0) {
+      return '';
+    } else {
+      return 'left';
+    }
+  }),
   _isWaves: computed('waves', function() {
     return !!this.get('waves');
   }),

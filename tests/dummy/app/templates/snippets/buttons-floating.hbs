@@ -1,0 +1,14 @@
+{{md-btn icon='flight_land'
+  baseButtonClass='btn-floating'}}
+{{md-btn icon='person'
+  baseButtonClass='btn-floating'
+  class='btn-large purple'}}
+
+{{!-- Button fixed in lower right of screen --}}
+{{#md-fab icon='wifi' as |f|}}
+  {{f.btn icon='mode_edit' class='btn-large'}}
+  <ul>
+    <li>{{f.btn icon='flight_takeoff' class='red'}}</li>
+    <li>{{f.btn icon='wifi' class='green'}}</li>
+  </ul>
+{{/md-fab}}
