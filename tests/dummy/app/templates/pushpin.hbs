@@ -1,33 +1,24 @@
+{{#x-component-doc title="md-pushpin" as |doc|}}
+  {{#doc.params as |p|}}
+    {{#p.param name="top" type="integer" default="0"}}Top threshold - number of pixels from screen top, where the component becomes fixed{{/p.param}}
+    {{#p.param name="bottom" type="integer" default="Infinity"}}Top threshold - number of pixels from screen top, where the component stops being fixed{{/p.param}}
+    {{#p.param name="offset" type="integer" default="0"}}Offset from top of window where the component is fixed{{/p.param}}
+  {{/doc.params}}
 
-<div class="row">
-  <div class="col s6">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam faucibus sed sem et porttitor. Aliquam in facilisis quam. Donec congue tempus bibendum. Donec eu tortor purus. Nulla vestibulum mattis dui, non efficitur ligula efficitur pellentesque. Praesent venenatis justo ut quam pretium, in iaculis lacus faucibus. Suspendisse mattis eget odio nec commodo.
-
-Pellentesque blandit sodales interdum. Donec pellentesque purus mi, nec maximus leo convallis eu. Donec eget molestie orci. Donec vitae dui lacus. Morbi viverra lacus sit amet magna vulputate, quis posuere felis finibus. Etiam sed maximus libero. Sed lacinia semper odio, vel finibus justo ultricies eu. Praesent ante purus, ullamcorper sed orci sit amet, malesuada dapibus diam. Donec ut eleifend sem. Sed sed tortor condimentum, tempus erat convallis, efficitur arcu.
-
-Donec ut nisl mi. Etiam in luctus turpis. In non fringilla massa. Fusce quis dui at diam tincidunt rhoncus eu ut massa. Ut in imperdiet erat. Pellentesque efficitur convallis eros gravida pretium. Donec varius lacus ut urna convallis elementum. Sed cursus luctus leo, a bibendum libero finibus eu. Nullam non rhoncus arcu. Proin a arcu condimentum, euismod arcu vel, egestas elit.
-
-Ut lacus sem, finibus tincidunt massa at, sodales hendrerit ante. Vestibulum quis libero maximus, egestas neque ut, lacinia ante. Suspendisse id euismod ipsum, nec posuere neque. Nulla bibendum dapibus nisl, ut suscipit leo commodo ac. Cras commodo finibus tristique. Integer ut scelerisque diam, vitae ultrices felis. Nunc id luctus arcu. Aliquam pretium massa sit amet dolor tempus, et luctus elit imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In commodo quam leo, at semper lectus faucibus nec. Aenean non elit consectetur ligula pharetra convallis ac eu odio.
-
-Nullam et nibh cursus, euismod nisl vitae, tristique augue. Suspendisse non purus molestie, convallis quam quis, placerat urna. Donec ornare vehicula lacus, sed suscipit leo suscipit vel. Aliquam venenatis, metus ac fermentum faucibus, metus felis faucibus justo, ut elementum quam metus eget sem. Quisque eleifend nisl at odio tristique, a bibendum quam egestas. Sed fermentum tortor odio, eget mollis ante tristique vitae. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed iaculis eget lacus vel consequat. Phasellus sollicitudin nisi ac est consequat mattis. Vestibulum consequat nisi vel ultrices consectetur. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-  </div>
-  <div class="col s6">
-    {{#md-pushpin offset=80 top=210 bottom=700 }}
-      <div class="card-panel blue-grey white-text">
-        Nullam et nibh cursus, euismod nisl vitae, tristique augue. Suspendisse non purus molestie, convallis quam quis, placerat urna. Donec ornare vehicula lacus, sed suscipit leo suscipit vel. Aliquam venenatis, metus ac fermentum faucibus, metus felis faucibus justo.
-
-        Nullam et nibh cursus, euismod nisl vitae, tristique augue. Suspendisse non purus molestie, convallis quam quis, placerat urna. Donec ornare vehicula lacus, sed suscipit leo suscipit vel. Aliquam venenatis, metus ac fermentum faucibus, metus felis faucibus justo.
-      </div>
-    {{/md-pushpin}}
-  </div>
-</div>
+  {{#doc.actions as |a|}}
+    {{#a.action name="on-pin"}}Called when the component is pinned{{/a.action}}
+    {{#a.action name="on-unpin"}}Called when the component is un-pinned{{/a.action}}
+  {{/doc.actions}}
+{{/x-component-doc}}
 
 
-<div style="height: 400px" class="purple white-text card-panel">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam faucibus sed sem et porttitor. Aliquam in facilisis quam. Donec congue tempus bibendum. Donec eu tortor purus. Nulla vestibulum mattis dui, non efficitur ligula efficitur pellentesque. Praesent venenatis justo ut quam pretium, in iaculis lacus faucibus. Suspendisse mattis eget odio nec commodo.
 
-Pellentesque blandit sodales interdum. Donec pellentesque purus mi, nec maximus leo convallis eu. Donec eget molestie orci. Donec vitae dui lacus. Morbi viverra lacus sit amet magna vulputate, quis posuere felis finibus. Etiam sed maximus libero. Sed lacinia semper odio, vel finibus justo ultricies eu. Praesent ante purus, ullamcorper sed orci sit amet, malesuada dapibus diam. Donec ut eleifend sem. Sed sed tortor condimentum, tempus erat convallis, efficitur arcu.
+{{#x-example title="Pushpin" name="pushpin-basic"}}
+<p>The pushpin component fixes content to a position on the screen while the user scrolls. Typically, the use case is to fix a navigation element the the screen as the user scrolls down, past a certain threshold.</p>
 
-Donec ut nisl mi. Etiam in luctus turpis. In non fringilla massa. Fusce quis dui at diam tincidunt rhoncus eu ut massa. Ut in imperdiet erat. Pellentesque efficitur convallis eros gravida pretium. Donec varius lacus ut urna convallis elementum. Sed cursus luctus leo, a bibendum libero finibus eu. Nullam non rhoncus arcu. Proin a arcu condimentum, euismod arcu vel, egestas elit.
+{{/x-example}}
+
+
+<div style="height: 1000px">
 
 </div>

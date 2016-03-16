@@ -1,7 +1,7 @@
 /*global window: true*/
 import Ember from 'ember';
 
-const { computed, Component } = Ember;
+const { inject, computed, Component } = Ember;
 function actionProxy(name) {
   return function() {
     return this.sendAction(name, ...arguments);
@@ -36,7 +36,13 @@ export default Component.extend({
       return `m${12-s}`;
     }
   }),
+  flashMessages: inject.service(),
   actions: {
+    notify(arg) {
+      this.get('flashMessages').add({
+        message: arg
+      });
+    },
     wasClicked(arg) {
       window.alert(arg);
     },

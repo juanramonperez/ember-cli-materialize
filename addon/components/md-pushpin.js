@@ -1,67 +1,70 @@
 import Ember from 'ember';
 import layout from '../templates/components/md-pushpin';
 
-const { inject, computed, Component } = Ember;
+const { run: {scheduleOnce}, inject, computed, computed: { readOnly }, Component } = Ember;
 
 export default Component.extend({
-  classNameBindings: ['pinned', 'pin-top', 'pin-bottom'],
+  classNameBindings: ['pinClass'],
   attributeBindings: ['style'],
   top: 0,
-  bottom: Math.Infinity,
   offset: 0,
-  pinned: false,
-  'pin-top': false,
-  'pin-bottom': false,
-  _cssTop: null,
-  style: computed('_cssTop', function() {
-    const t = this.get('_cssTop');
-    if (t !== null) {
-      return `top: ${t}px`;
+  bottom: Math.Infinity,
+  _lastPinClass: null,
+  pinClass: computed('docHeight', 'originalOffset', 'scrollTop', function() {
+    const st = this.get('scrollTop');
+    const t = this.get('top') ;
+    const b = this.get('bottom');
+    const lpc = this.get('_lastPinClass');
+    if (st < t) {
+      this.set('_cssTop', null);
+      if (lpc !== null && lpc !== 'pin-top') {
+        this.sendAction('on-unpin');
+      }
+      this.set('_lastPinClass', 'pin-top');
+      return 'pin-top';
+    } else {
+      if (st > b) {
+        this.set('_cssTop', b - this.get('originalOffset'));
+        this.set('_lastPinClass', 'pin-bottom');
+        if (lpc !== null && lpc !== 'pin-bottom') {
+          this.sendAction('on-unpin');
+        }
+        return 'pin-bottom';
+      } else {
+        this.set('_cssTop', this.get('offset'));
+        this.set('_lastPinClass', 'pinned');
+        if (lpc !== null && lpc !== 'pinned') {
+          this.sendAction('on-pin');
+        }
+        return 'pinned';
+      }
     }
+  }),
+  _cssTop: null,
+  _cssBottom: null,
+  scrollTop: readOnly('md-utils.scrollTop'),
+  scrollRemaining: readOnly('md-utils.scrollRemaining'),
+  docHeight: readOnly('md-utils.docHeight'),
+  style: computed('originalOffset', '_cssBottom', '_cssTop', function() {
+    const t = this.get('_cssTop');
+    const b = this.get('_cssBottom');
+    let props = [];
+    if (t !== null) {
+      props.push(['top', `${t}px`]);
+    }
+    if (b !== null) {
+      props.push(['top', `${b}px`]);
+    }
+    return new Ember.Handlebars.SafeString(props.map((p) => `${p[0]}: ${p[1]}`).join('; '));
   }),
 
   'md-utils': inject.service(),
   layout,
   didInsertElement() {
     this._super(...arguments);
-    this.get('md-utils').on('scroll', (e) => {
-      var scrolled = Ember.$(window).scrollTop() + this.get('offset');
-      this.onScroll(scrolled);
-    })
-    this.set('originalOffset', this.$().offset().top);
-    this.onScroll(Ember.$(window).scrollTop());
+    scheduleOnce('afterRender', () => {
+      this.set('originalOffset', this.$().offset().top);
+    });
   },
 
-  onScroll(scrolled) {
-    if (this.get('top') <= scrolled && this.get('bottom') >= scrolled && !this.get('pinned')) {
-      this.setProperties({
-        pinned: true,
-        'pin-top': false,
-        'pin-bottom': false
-      });
-      this.set('_cssTop', this.get('offset'));
-    }
-
-    // Add pin-top (when scrolled position is above top)
-    if (scrolled < this.get('top') && !this.get('pin-top')) {
-      debugger;
-      this.setProperties({
-        pinned: false,
-        'pin-top': true,
-        'pin-bottom': false
-      });
-      this.set('_cssTop', 0);
-    }
-
-    // Add pin-bottom (when scrolled position is below bottom)
-    if (scrolled > this.get('bottom') && !this.get('pin-bottom')) {
-      debugger;
-      this.setProperties({
-        pinned: false,
-        'pin-top': false,
-        'pin-bottom': true
-      });
-      this.set('_cssTop', this.get('bottom') - this.get('originalOffset'));
-    }
-  }
 });
