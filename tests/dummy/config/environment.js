@@ -14,10 +14,12 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-    flashMessageDefaults: {
-      // flash message defaults
-      timeout: 5000,
-      extendedTimeout: 375
+    materialize: {
+      toasts: {
+        warning: {
+          class: 'orange'
+        }
+      }
     },
     APP: {
       // Here you can pass flags/options to your application instance

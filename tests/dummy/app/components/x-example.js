@@ -2,15 +2,21 @@
 import Ember from 'ember';
 
 const { computed, Component } = Ember;
-
+function actionProxy(name) {
+  return function() {
+    return this.sendAction(name, ...arguments);
+  };
+}
 export default Component.extend({
   classNames: ['x-example'],
   horizSplit: 6,
-  nameOfTemplate: computed('name', function() {
-    return `${this.get('name')}.hbs`;
+  exampleScope: 'snippets/',
+  exampleExtension: 'hbs',
+  nameOfTemplate: computed('exampleExtension', 'name', function() {
+    return `${this.get('name')}.${this.get('exampleExtension')}`;
   }),
-  nameOfPartial: computed('name', function() {
-    return `snippets/${this.get('name')}`;
+  nameOfPartial: computed('exampleScope', 'name', function() {
+    return `${this.get('exampleScope')}${this.get('name')}`;
   }),
   _horizClassOption1: computed('horizSplit', function() {
     const s = this.get('horizSplit');
@@ -34,6 +40,7 @@ export default Component.extend({
     wasClicked(arg) {
       window.alert(arg);
     },
+    successToast: actionProxy('successToast'),
     pageChanged() {
       this.sendAction('pageChanged', ...arguments);
     }

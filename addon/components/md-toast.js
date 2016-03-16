@@ -2,14 +2,17 @@ import Ember from 'ember';
 import layout from '../templates/components/md-toast';
 import RecognizerMixin from 'ember-gestures/mixins/recognizers';
 
-const { Component, run: { next, cancel, later }, computed, computed: { readOnly }, getWithDefault } = Ember;
+const { Component, inject, run: { next, cancel, later }, computed, computed: { readOnly }, getWithDefault } = Ember;
 
 export default Component.extend(RecognizerMixin, {
   recognizers: 'pan',
+  'md-config': inject.service(),
   classNames: ['md-toast', 'toast'],
-  classNameBindings: ['active', '_color', 'exiting', 'panning', '_clicked:exiting'],
+  classNameBindings: ['active', '_toastClass', 'exiting', 'panning', '_clicked:exiting'],
   active: false,
-  showProgressBar: readOnly('content.showProgress'),
+  showProgressBar: computed('content.showProgress', 'content.sticky', function() {
+    return this.get('content.showProgress') && !this.get('content.sticky');
+  }),
   exiting: readOnly('content.exiting'),
   attributeBindings: ['style'],
   _clicked: false,
@@ -20,6 +23,11 @@ export default Component.extend(RecognizerMixin, {
     this._super(...arguments);
     this.set('_inlineStyle', {});
   },
+  _toastStyle: computed('content.type', function() {
+    return Ember.$.extend(true,
+      Ember.$.extend({}, this.get('md-config.options.toasts.styles.default')),
+      Ember.$.extend({}, this.get(`md-config.options.toasts.styles.${this.get('content.type')}`)))
+  }),
   style: computed('_inlineStyle', '_inlineStyle.left', '_inlineStyle.opacity', function() {
     let props = [];
     if (this.get('_inlineStyle.left')) {
@@ -35,29 +43,14 @@ export default Component.extend(RecognizerMixin, {
     if (icon) {
       return icon;
     }
-    switch (this.get('content.type')) {
-      case 'success': return 'check';
-      case 'warning': return 'warning';
-      case 'danger':  return 'error';
-      case 'info':    return 'info';
-      default:        return null;
-    }
+    return this.get(`_toastStyle.icon`);
   }),
-  _color: computed('content.color', 'content.type', function() {
+  _toastClass: computed('content.color', 'content.type', function() {
     const color = this.get('content.color');
     if (color) {
       return color;
     }
-    switch (this.get('content.type')) {
-      case 'success':
-        return 'green';
-      case 'warning':
-        return 'yellow black-text';
-      case 'danger':
-        return 'red';
-      default:
-        return '';
-    }
+    return this.get(`_toastStyle.class`);
   }),
 
   didInsertElement() {
@@ -72,24 +65,27 @@ export default Component.extend(RecognizerMixin, {
     this.set('_clicked', true);
     later(() => {
       this._destroyFlashMessage();
-    }, 375);
+    }, this.get('content.extendedTimeout'));
   },
-
+  progressDuration: computed('active', 'content.timeout', function() {
+    return `transition: width ${this.get('content.timeout')}ms; width: ${this.get('active') ? 100 : 0}%`;
+  }),
   pan(e) {
     const dx = Ember.get(e, 'gesture.deltaX') || Ember.get(e, 'originalEvent.gesture.deltaX');
-    const activationDistance = 80;
+    const activationDistance = this.get('md-config.toasts.activationDistance');
     this.set('panning', true);
     var opacityPercent = 1-Math.abs(dx / activationDistance);
     if (opacityPercent < 0) {
       opacityPercent = 0;
     }
+    this.get('content').set('sticky', true);
     this.set('_inlineStyle.left', dx);
     this.set('_inlineStyle.opacity', opacityPercent);
   },
 
   panEnd(e) {
     const dx = Ember.get(e, 'gesture.deltaX') || Ember.get(e, 'originalEvent.gesture.deltaX');
-    const activationDistance = 80;
+    const activationDistance = this.get('md-config.toasts.activationDistance');
     if (Math.abs(dx) > activationDistance) {
       this.click();
     } else {
@@ -107,7 +103,6 @@ export default Component.extend(RecognizerMixin, {
     }
   },
 
-  // private
   _destroyFlashMessage() {
     const flash = getWithDefault(this, 'content', false);
     if (flash) {

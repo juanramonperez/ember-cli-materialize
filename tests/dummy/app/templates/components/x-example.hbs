@@ -5,15 +5,20 @@
     </div>
   {{/if}}
   {{#if hasBlock}}
-    <div class="col s12 description">
-      {{yield}}
-    </div>
+      {{#if (eq exampleExtension 'hbs')}}
+        <div class="col s12 description">
+        {{yield}}
+        </div>
+      {{/if}}
   {{/if}}
   <div class="col {{_horizClassOption2}} s12 rendered-example">
-    {{partial nameOfPartial}}
+    {{#if (eq exampleExtension 'hbs')}}
+      {{partial nameOfPartial}}
+    {{else}}
+      {{yield}}
+    {{/if}}
   </div>
   <div class="col {{_horizClassOption1}} s12 hbs-code">
     {{code-snippet name=nameOfTemplate}}
   </div>
-
 </div>

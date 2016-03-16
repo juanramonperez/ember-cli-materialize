@@ -8,17 +8,22 @@ moduleForComponent('md-toasts', 'Integration | Component | md toasts', {
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{md-toasts}}`);
+  this.set('flash', {
+    timeout: 1000
+  });
+  this.set('flashMessages', {
+    arrangedQueue: []
+  });
+  this.render(hbs`{{md-toasts content=flash flashMessages=flashMessages}}`);
 
   assert.equal(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`
-    {{#md-toasts}}
+    {{#md-toasts content=flash flashMessages=flashMessages}}
       template block text
     {{/md-toasts}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), '');
 });

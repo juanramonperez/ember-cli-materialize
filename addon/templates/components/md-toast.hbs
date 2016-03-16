@@ -1,4 +1,9 @@
-<i class="material-icons left">{{_alertIcon}}</i>
+{{#if _alertIcon}}
+  <i class="material-icons left">{{_alertIcon}}</i>
+{{/if}}
 {{content.message}}
-
-<i class="material-icons right">pin</i>
+{{#if showProgressBar}}
+  <div class="toast-progress">
+    <div class="toast-progress-bar" style={{progressDuration}}></div>
+  </div>
+{{/if}}
