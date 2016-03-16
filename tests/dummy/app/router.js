@@ -23,6 +23,7 @@ Router.map(function() {
     this.route('third-thing', function() {});
   });
   this.route('toasts');
+  this.route('pushpin');
 });
 
 export default Router;
