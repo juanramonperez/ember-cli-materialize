@@ -48,7 +48,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.baseURL = 'ember-materialize-v1-site/';
   }
 
   return ENV;
