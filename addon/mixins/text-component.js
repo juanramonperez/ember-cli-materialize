@@ -7,6 +7,7 @@ export default Mixin.create(FormField, {
   disabled: false,
   inputClassNames: [],
   labelClassNames: [],
+  active: false,
   concatenatedProperties: ['inputClassNames', 'labelClassNames'],
   _classesForInput: computed('inputClassNames', function() {
     let classes = this.get('inputClassNames');
@@ -26,6 +27,10 @@ export default Mixin.create(FormField, {
       return '';
     }
   }),
+  didInsertElement() {
+    this._super(...arguments);
+    this.set('active', this.get('value') || this.get('placeholder'));
+  },
   actions: {
     onChange() {
       this.sendAction('on-change');
