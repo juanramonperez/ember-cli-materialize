@@ -3,6 +3,10 @@
 {{#md-nav as |n|}}
   {{#n.title 'index'}}
     ember-cli-materialize {{/n.title}}
+  <a data-activates={{n.sidenavId}} class="button-collapse">
+    <i class="material-icons">menu</i>
+  </a>
+  <div class="hide-on-med-and-down">
   {{#n.menu class='right' as |m|}}
     {{#m.btn text='Components' as |b|}}
       {{#b.dropdown as |d|}}
@@ -23,6 +27,23 @@
       {{/b.dropdown}}
     {{/m.btn}}
   {{/n.menu}}
+  </div>
+  {{#n.sidenav params=(hash menuWidth=300) as |sn|}}
+    {{sn.link-to 'Button' 'button'}}
+    {{sn.link-to 'Card' 'card'}}
+    {{sn.link-to 'Collapsible' 'collapsible'}}
+    {{sn.link-to 'Collection' 'collection'}}
+    {{sn.link-to 'Forms' 'forms'}}
+    {{sn.link-to 'Loader' 'loader'}}
+    {{sn.link-to 'Nav' 'nav'}}
+    {{sn.link-to 'Pagination' 'pagination'}}
+    {{sn.link-to 'Side-Nav' 'sidenav'}}
+    {{sn.link-to 'Modal' 'modal'}}
+    <li class="divider"></li>
+    {{sn.link-to 'Toasts' 'toasts'}}
+    {{sn.link-to 'Breadcrumbs' 'crumb'}}
+    {{sn.link-to 'Pushpin' 'pushpin'}}
+  {{/n.sidenav}}
 {{/md-nav}}
 </div>
 
