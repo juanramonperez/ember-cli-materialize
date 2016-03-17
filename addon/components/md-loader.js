@@ -28,7 +28,7 @@ export default Component.extend({
     }
   }),
   _barStyle: computed('max', 'value', function() {
-    return `width: ${100 * this.get('value') / this.get('max')}%`;
+    return new Ember.Handlebars.SafeString(`width: ${100 * this.get('value') / this.get('max')}%`);
   }),
   layout,
   init() {

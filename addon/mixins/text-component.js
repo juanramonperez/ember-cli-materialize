@@ -27,7 +27,7 @@ export default Mixin.create(FormField, {
       return '';
     }
   }),
-  didInsertElement() {
+  init() {
     this._super(...arguments);
     this.set('active', this.get('value') || this.get('placeholder'));
   },

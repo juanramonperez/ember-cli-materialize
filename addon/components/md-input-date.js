@@ -2,14 +2,10 @@ import Ember from 'ember';
 import Input from './md-input';
 import layout from '../templates/components/md-input-date';
 
-export default Ember.Component.extend({
+export default Input.extend({
   type: 'date',
   classNames: ['input-field'],
   layout,
-  didInsertElement() {
-    this._super(...arguments);
-
-  },
   actions: {
     inputClicked() {
       this.$('.picker').addClass('picker--opened')

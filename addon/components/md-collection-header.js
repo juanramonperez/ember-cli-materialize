@@ -1,11 +1,15 @@
 import Ember from 'ember';
 import layout from '../templates/components/md-collection-header';
 
-export default Ember.Component.extend({
+const { run: { scheduleOnce }, Component } = Ember;
+
+export default Component.extend({
   classNames: ['md-collection-header', 'collection-header'],
   layout,
-  init() {
+  didInsertElement() {
     this._super(...arguments);
-    this.attrs.collectionComponent.set('_hasHeader', true);
+    scheduleOnce('afterRender', () => {
+      this.collectionComponent.set('_hasHeader', true);
+    });
   }
 });

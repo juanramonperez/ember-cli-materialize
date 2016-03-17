@@ -68,7 +68,7 @@ export default Component.extend(RecognizerMixin, {
     }, this.get('content.extendedTimeout'));
   },
   progressDuration: computed('active', 'content.timeout', function() {
-    return `transition: width ${this.get('content.timeout')}ms; width: ${this.get('active') ? 100 : 0}%`;
+    return new Ember.Handlebars.SafeString(`transition: width ${this.get('content.timeout')}ms; width: ${this.get('active') ? 100 : 0}%`);
   }),
   pan(e) {
     const dx = Ember.get(e, 'gesture.deltaX') || Ember.get(e, 'originalEvent.gesture.deltaX');

@@ -5,10 +5,12 @@ export default Ember.Component.extend({
   layout,
   classNames: ['side-nav'],
   tagName: 'ul',
-  init() {
+  didInsertElement() {
     this._super(...arguments);
-    if (this.get('_parentNav')) {
-      this.set('_parentNav._sidenavId', this.get('elementId'));
-    }
+    Ember.run.scheduleOnce('afterRender', () => {
+      if (this.get('_parentNav')) {
+        this.set('_parentNav._sidenavId', this.get('elementId'));
+      }
+    });
   }
 });

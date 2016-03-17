@@ -5,8 +5,10 @@ export default Ember.Component.extend({
   classNames: ['md-card-reveal', 'card-reveal'],
   layout,
 
-  init() {
+  didInsertElement() {
     this._super(...arguments);
-    this.attrs.card.set('_hasReveal', true);
+    Ember.run.scheduleOnce('afterRender', () => {
+      this.card.set('_hasReveal', true);
+    });
   }
 });

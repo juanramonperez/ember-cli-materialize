@@ -7,8 +7,8 @@ export default Component.extend({
   classNames: ['md-nav'],
   layout,
   tagName: 'nav',
-  didInsertElement() {
-    this._super(...arguments);
+  _setupSidenav(id) {
+    this.set('_sidenavId', id);
     scheduleOnce('afterRender', () => {
       this.$('.button-collapse').sideNav();
     })
