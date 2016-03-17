@@ -1,3 +1,4 @@
+//BEGIN-SNIPPET person-model
 import DS from 'ember-data';
 import {
   validator, buildValidations
@@ -26,3 +27,4 @@ export default DS.Model.extend(Validations, {
   lastName: attr('string'),
   email: attr('string')
 });
+//END-SNIPPET
