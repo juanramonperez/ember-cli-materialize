@@ -1,1 +1,12 @@
-{{yield}}
+{{yield (hash
+  text=(component 'md-input')
+  password=(component 'md-input' type='password')
+  email=(component 'md-input' type='email')
+  phone=(component 'md-input' type='text')
+  number=(component 'md-input' type='number')
+  date=(component 'md-input-date')
+  switch=(component 'md-switch')
+  radios=(component 'md-radios')
+  check=(component 'md-check')
+  btn=(component 'md-btn')
+)}}
