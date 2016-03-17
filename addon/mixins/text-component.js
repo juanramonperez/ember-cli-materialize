@@ -1,21 +1,15 @@
 import Ember from 'ember';
+import FormField from './form-field';
 
 const { computed, Mixin } = Ember;
 
-export default Mixin.create({
-  value: '',
-  label: '',
+export default Mixin.create(FormField, {
   disabled: false,
-  placeholder: null,
-  icon: null,
   inputClassNames: [],
   labelClassNames: [],
   concatenatedProperties: ['inputClassNames', 'labelClassNames'],
-  _classesForInput: computed('inputClassNames', 'validate', function() {
+  _classesForInput: computed('inputClassNames', function() {
     let classes = this.get('inputClassNames');
-    if (this.get('validate')) {
-      classes.push('validate');
-    }
     return classes.join(' ');
   }),
   _classesForLabel: computed('labelClassNames', function() {
@@ -23,5 +17,27 @@ export default Mixin.create({
   }),
   _inputId: computed('elementId', function() {
     return `${this.get('elementId')}-${this._debugContainerKey.split(':')[1]}`;
-  })
+  }),
+  _validateClass: computed('validate', 'valid', function() {
+    if (this.get('validate')) {
+      return this.get('valid') ? 'valid' : 'invalid';
+    }
+    else {
+      return '';
+    }
+  }),
+  actions: {
+    onChange() {
+      this.sendAction('on-change');
+    },
+    onKeyDown() {
+      this.sendAction('on-key-down');
+    },
+    onKeyUp() {
+      this.sendAction('on-key-up');
+    },
+    onBlur() {
+      this.sendAction('on-blur');
+    },
+  }
 });

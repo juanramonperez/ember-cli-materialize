@@ -2,15 +2,20 @@
 <i class="material-icons prefix">{{icon}}</i>
 {{/if}}
 <input
-  value={{value}}
+  value={{mut value}}
   id={{_inputId}}
   type={{type}}
   placeholder={{placeholder}}
   disabled={{disabled}}
-  class={{_classesForInput}}>
+  class="{{_classesForInput}} {{_validateClass}}"
+  onkeyup={{action 'onKeyUp'}}
+  onkeydown={{action 'onKeyDown'}}
+  onchange={{action 'onChange'}}
+  onblur={{action 'onBlur'}}>
 <label
   for={{_inputId}}
-  class={{labelClass}}>
+  class={{labelClass}}
+  data-error={{error}}>
   {{label}}
 </label>
 {{yield}}

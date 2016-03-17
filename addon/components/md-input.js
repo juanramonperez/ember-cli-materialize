@@ -7,5 +7,10 @@ const { computed, Component } = Ember;
 export default Component.extend(TextComponent, {
   classNames: ['md-input', 'input-field'],
   type: 'text',
-  layout
+  layout,
+  actions: {
+    onKeyUp() {
+      this.set('value', this.$('input').val());
+    }
+  }
 });

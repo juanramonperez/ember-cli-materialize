@@ -1,10 +1,14 @@
 {{#md-form class='card-panel grey lighten-4' as |f|}}
   <div class="row">
-  {{f.text label='First Name' class='col s6'}}
-  {{f.text label='Last Name' class='col s6'}}
+    {{f.text label='First Name' class='col s6'}}
+    {{f.text label='Last Name' class='col s6'}}
   </div>
-  {{f.email label='Email Address'}}
-  {{f.password label='Password'}}
+  <div class="row">
+    {{f.email label='Email Address' class='col s12'}}
+  </div>
+  <div class="row">
+    {{f.password label='Password' class='col s12'}}
+  </div>
   <div class="row">
     {{f.date label='Birthday' class='col s6'}}
     {{f.phone label='Phone #' class='col s6'}}

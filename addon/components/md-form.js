@@ -1,7 +1,10 @@
 import Ember from 'ember';
 import layout from '../templates/components/md-form';
 
-export default Ember.Component.extend({
+const { computed, Component } = Ember;
+
+export default Component.extend({
   classNames: ['md-form'],
-  layout
+  layout,
+  model: ''
 });
