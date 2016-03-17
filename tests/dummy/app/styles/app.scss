@@ -5,7 +5,9 @@
 $primary-color: color("blue-grey", "darken-2");
 
 @import 'components/variables';
-@import 'materialize';
+
+$roboto-font-path: '/assets/';
+@import "materialize";
 
 @import "x-example";
 @import "x-component-doc";

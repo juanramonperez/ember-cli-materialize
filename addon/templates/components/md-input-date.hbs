@@ -1,13 +1,8 @@
+
 {{#if icon}}
 <i class="material-icons prefix">{{icon}}</i>
 {{/if}}
-<input
-  value={{value}}
-  id={{_inputId}}
-  type={{type}}
-  placeholder={{placeholder}}
-  disabled={{disabled}}
-  class={{_classesForInput}}>
+{{pikaday-input value=startsAt format="MM/DD/YYYY"}}
 <label
   for={{_inputId}}
   class={{_classesForLabel}}>

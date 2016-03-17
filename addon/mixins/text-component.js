@@ -8,10 +8,18 @@ export default Mixin.create({
   disabled: false,
   placeholder: null,
   icon: null,
-  inputClass: "",
-  labelClass: "",
-  _classesForInput: computed('inputClass', 'validate', function() {
-    return `${this.get('inputClass')} ${this.get('validate') ? 'validate' : '' }`;
+  inputClassNames: [],
+  labelClassNames: [],
+  concatenatedProperties: ['inputClassNames', 'labelClassNames'],
+  _classesForInput: computed('inputClassNames', 'validate', function() {
+    let classes = this.get('inputClassNames');
+    if (this.get('validate')) {
+      classes.push('validate');
+    }
+    return classes.join(' ');
+  }),
+  _classesForLabel: computed('labelClassNames', function() {
+    return this.get('labelClassNames').join(' ');
   }),
   _inputId: computed('elementId', function() {
     return `${this.get('elementId')}-${this._debugContainerKey.split(':')[1]}`;
