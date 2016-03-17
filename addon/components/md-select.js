@@ -2,7 +2,7 @@ import Ember from 'ember';
 import layout from '../templates/components/md-select';
 import TextComponent from '../mixins/text-component';
 
-const { computed, Component } = Ember;
+const { run: {scheduleOnce}, computed, Component } = Ember;
 
 export default Component.extend({
   classNames: ['md-select', 'input-field'],
@@ -33,7 +33,9 @@ export default Component.extend({
   },
   didInsertElement() {
     this._super(...arguments);
-    this.$('select').material_select();
+    scheduleOnce('afterRender', () => {
+      this.$('select').material_select();
+    });
   },
   _selectClasses: computed('contentIconProp', function() {
     return this.get('contentIconProp') ? 'icons' : '';

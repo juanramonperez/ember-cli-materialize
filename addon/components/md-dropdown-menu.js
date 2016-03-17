@@ -8,6 +8,9 @@ export default Ember.Component.extend({
   tagName: 'ul',
   init() {
     this._super(...arguments);
-    this.attrs._dropdownRoot.set('_dropdownMenuId', this.elementId);
+    Ember.run.next(() => {
+      this.attrs._dropdownRoot.set('_dropdownMenuId', this.elementId);
+      this.attrs._dropdownRoot.setupDropdown();
+    });
   }
 });

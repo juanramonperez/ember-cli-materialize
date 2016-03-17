@@ -10,10 +10,9 @@ export default Mixin.create({
   _hasDropdown: computed('_dropdownMenuId', function() {
     return !!this.get('_dropdownMenuId');
   }),
-  didInsertElement() {
-    this._super(...arguments);
-    Ember.run.schedule('afterRender', () => {
+  setupDropdown() {
+    Ember.run.scheduleOnce('afterRender', () => {
       this.$().dropdown();
-    });
+    })
   }
 })

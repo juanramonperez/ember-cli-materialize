@@ -5,8 +5,5 @@ export default Ember.Component.extend({
   _dropdownRoot: null,
   classNames: ['md-dropdown-trigger'],
   layout,
-  tagName: 'li',
-  init() {
-    this._super(...arguments);
-  }
+  tagName: 'li'
 });

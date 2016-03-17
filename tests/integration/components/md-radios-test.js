@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('md-check', 'Integration | Component | md check', {
+moduleForComponent('md-radios', 'Integration | Component | md radios', {
   integration: true
 });
 
@@ -9,16 +9,16 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{md-check}}`);
+  this.render(hbs`{{md-radios}}`);
 
   assert.equal(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`
-    {{#md-check}}
+    {{#md-radios}}
       template block text
-    {{/md-check}}
+    {{/md-radios}}
   `);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim(), 'template block text');
 });
