@@ -4,7 +4,7 @@ var RSVP = require('rsvp');
 
 module.exports = {
   description: 'Installation blueprint for ember-cli-materialize v1.x',
-
+  normalizeEntityName: function() {},
   afterInstall: function(options) {
     return this.addAddonsToProject([
       {name: 'ember-materialize-shim', target: '~0.0.1'},
