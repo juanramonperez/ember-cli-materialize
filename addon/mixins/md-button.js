@@ -7,7 +7,7 @@ export default Mixin.create(ClickAction, {
   flat: false,
   float: false,
   large: false,
-  classNameBindings: ['_baseButtonClass', 'large:btn-large', '_isWaves:waves-effect', '_waveType'],
+  classNameBindings: ['disabled', '_baseButtonClass', 'large:btn-large', '_isWaves:waves-effect', '_waveType'],
   attributeBindings: ['disabled'],
   waves: 'light',
   _baseButtonClass: computed('flat', 'float', function() {
