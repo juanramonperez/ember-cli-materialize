@@ -1,31 +1,31 @@
 {{#md-form class='card-panel grey lighten-4' as |f|}}
   <div class="row">
-    {{f.text label='First Name' class='col s6'}}
-    {{f.text label='Last Name' class='col s6'}}
+    {{f.text text='First Name' class='col s6'}}
+    {{f.text text='Last Name' class='col s6'}}
   </div>
   <div class="row">
-    {{f.email label='Email Address' class='col s12'}}
+    {{f.email text='Email Address' class='col s12'}}
   </div>
   <div class="row">
-    {{f.password label='Password' class='col s12'}}
+    {{f.password text='Password' class='col s12'}}
   </div>
   <div class="row">
-    {{f.date label='Birthday' class='col s6'}}
-    {{f.phone label='Phone #' class='col s6'}}
+    {{f.date text='Birthday' class='col s6'}}
+    {{f.phone text='Phone #' class='col s6'}}
   </div>
   <div class="row">
     <div class="col s6">
       <h6>Gender</h6>
       {{#f.radios as |r|}}
-        {{r.radio label='Male'}}
-        {{r.radio label='Female'}}
+        {{r.radio text='Male'}}
+        {{r.radio text='Female'}}
       {{/f.radios}}
     </div>
     <div class="col s6">
       <h6>Age</h6>
       {{#f.radios as |r|}}
-        {{r.radio label='Young'}}
-        {{r.radio label='Old'}}
+        {{r.radio text='Young'}}
+        {{r.radio text='Old'}}
       {{/f.radios}}
     </div>
   </div>
