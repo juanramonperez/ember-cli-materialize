@@ -1,3 +1,4 @@
+<div id="sidenav-container"></div>
 {{md-toasts}}
 <div class="navbar-fixed">
 {{#md-nav as |n|}}
@@ -28,7 +29,8 @@
     {{/m.btn}}
   {{/n.menu}}
   </div>
-  {{#n.sidenav params=(hash menuWidth=300) as |sn|}}
+
+  {{#n.sidenav as |sn|}}
     {{sn.link-to 'Button' 'button'}}
     {{sn.link-to 'Card' 'card'}}
     {{sn.link-to 'Collapsible' 'collapsible'}}

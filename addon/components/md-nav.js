@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/md-nav';
 
-const { run: { scheduleOnce }, Component } = Ember;
+const { run: { next }, Component } = Ember;
 
 export default Component.extend({
   classNames: ['md-nav'],
@@ -9,8 +9,11 @@ export default Component.extend({
   tagName: 'nav',
   _setupSidenav(id) {
     this.set('_sidenavId', id);
-    scheduleOnce('afterRender', () => {
-      this.$('.button-collapse').sideNav();
-    })
+    next(() => {
+      this.$('.button-collapse').sideNav({
+        width: 300,
+        closeOnClick: true
+      });
+    });
   }
 });

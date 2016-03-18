@@ -1,1 +1,8 @@
-{{partial 'content-with-icon'}}
+{{#if icon}}
+  <i class="material-icons {{iconClass}}">
+    {{icon}}
+  </i>
+{{/if}}
+{{yield}}
+{{label}}
+

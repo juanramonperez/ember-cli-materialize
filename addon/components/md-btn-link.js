@@ -6,6 +6,6 @@ const { computed, LinkComponent } = Ember;
 
 export default LinkComponent.extend(Button, {
   classNames: ['md-btn-link'],
-  text: computed.alias('linkTitle'),
+  label: computed.alias('linkTitle'),
   layout
 });
