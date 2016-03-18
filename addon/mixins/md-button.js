@@ -4,16 +4,22 @@ import ClickAction from '../mixins/click-action';
 const { computed, Mixin } = Ember;
 
 export default Mixin.create(ClickAction, {
-  baseButtonClass: 'btn',
-  classNameBindings: ['baseButtonClass', '_isWaves:waves-effect', '_waveType'],
+  flat: false,
+  float: false,
+  large: false,
+  classNameBindings: ['_baseButtonClass', 'large:btn-large', '_isWaves:waves-effect', '_waveType'],
   attributeBindings: ['disabled'],
   waves: 'light',
-  iconClass: computed('baseButtonClass', function() {
-    if (this.get('baseButtonClass').indexOf('floating') >= 0) {
-      return '';
+  _baseButtonClass: computed('flat', 'float', function() {
+    const p = this.getProperties(['flat', 'float']);
+    if (p.flat) {
+      return 'btn-flat';
     } else {
-      return 'left';
+      return p.float ? 'btn-floating' : 'btn';
     }
+  }),
+  iconClass: computed('float', function() {
+    return this.get('float') ? '' : 'left';
   }),
   _isWaves: computed('waves', function() {
     return !!this.get('waves');

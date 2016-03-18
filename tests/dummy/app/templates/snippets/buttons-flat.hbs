@@ -1,20 +1,20 @@
-{{md-btn text='Duck'
-  class="btn-flat"
+{{md-btn text='Duck' flat=true
   on-click=(action
     'wasClicked'
     'Duck clicked!'
   )}}
 
 {{md-btn text='Duck'
+  flat=true
   waves="red"
   icon="lightbulb_outline"
   iconClass="right"
   waves='dark'
-  class="btn-flat red white-text"}}
+  class="red white-text"}}
 
 {{md-btn text='Goose!'
   disabled=true
-  classNames="btn-flat"
+  flat=true
   on-click=(action
     'wasClicked'
     'Goose clicked!'
