@@ -7,6 +7,7 @@ const { Component } = Ember;
 
 export default Component.extend(ClickAction, DropdownTrigger, {
   classNames: ['md-fake-link'],
+  iconClass: 'left',
   layout,
   tagName: 'li'
 });

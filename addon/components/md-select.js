@@ -7,8 +7,8 @@ const { run: {scheduleOnce}, computed, Component } = Ember;
 export default Component.extend({
   classNames: ['md-select', 'input-field'],
   content: null,
-  contentValueProp: '',
-  contentDisplayProp: '',
+  optionValueProp: '',
+  optionDisplayProp: '',
   contentIconProp: '',
   iconAlign: 'right',
   optionClass: 'circle',
@@ -40,13 +40,13 @@ export default Component.extend({
   _selectClasses: computed('contentIconProp', function() {
     return this.get('contentIconProp') ? 'icons' : '';
   }),
-  _choices: computed('content', 'contentValueProp', 'contentDisplayProp', {
+  _choices: computed('content', 'optionValueProp', 'optionDisplayProp', {
     get() {
       const arr = this.get('content') || [];
       const choices = arr.map((x) => {
         return {
-          value: Ember.get(x, this.get('contentValueProp')),
-          text:  Ember.get(x, this.get('contentDisplayProp')),
+          value: Ember.get(x, this.get('optionValueProp')),
+          text:  Ember.get(x, this.get('optionDisplayProp')),
           icon: this.get('contentIconProp') ? Ember.get(x, this.get('contentIconProp')) : null
         };
       });
