@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import FormField from './form-field';
 
-const { computed, Mixin } = Ember;
+const { computed, Mixin, TextSupport } = Ember;
 
-export default Mixin.create(FormField, {
+export default Mixin.create(TextSupport, FormField, {
   disabled: false,
   inputClassNames: [],
   labelClassNames: [],
