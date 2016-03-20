@@ -1,13 +1,14 @@
 import Ember from 'ember';
 import FormField from './form-field';
 
-const { computed, Mixin, TextSupport } = Ember;
+const { computed, Mixin } = Ember;
 
-export default Mixin.create(TextSupport, FormField, {
+export default Mixin.create(FormField, {
   disabled: false,
   inputClassNames: [],
   labelClassNames: [],
   active: false,
+  value: null,
   concatenatedProperties: ['inputClassNames', 'labelClassNames'],
   _classesForInput: computed('inputClassNames', function() {
     let classes = this.get('inputClassNames');
@@ -33,15 +34,19 @@ export default Mixin.create(TextSupport, FormField, {
   },
   actions: {
     onChange() {
+      this._super(...arguments);
       this.sendAction('on-change');
     },
     onKeyDown() {
+      this._super(...arguments);
       this.sendAction('on-key-down');
     },
     onKeyUp() {
+      this._super(...arguments);
       this.sendAction('on-key-up');
     },
     onBlur() {
+      this._super(...arguments);
       this.sendAction('on-blur');
     },
   }

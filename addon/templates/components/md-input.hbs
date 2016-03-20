@@ -1,17 +1,17 @@
 {{#if icon}}
 <i class="material-icons prefix">{{icon}}</i>
 {{/if}}
-<input
-  value={{mut value}}
-  id={{_inputId}}
-  type={{type}}
-  placeholder={{placeholder}}
-  disabled={{disabled}}
+{{input
+  value=value
+  id=_inputId
+  type=type
+  placeholder=placeholder
+  disabled=disabled
   class="{{_classesForInput}} {{_validateClass}}"
-  onkeyup={{action 'onKeyUp'}}
-  onkeydown={{action 'onKeyDown'}}
-  onchange={{action 'onChange'}}
-  onblur={{action 'onBlur'}}>
+  onkeyup=(action 'onKeyUp')
+  onkeydown=(action 'onKeyDown')
+  onchange=(action 'onChange')
+  onblur=(action 'onBlur') }}
 <label
   for={{_inputId}}
   class="{{labelClass}} {{if active 'active'}}"

@@ -12,13 +12,20 @@ test('it renders', function(assert) {
   this.render(hbs`{{md-input}}`);
 
   assert.equal(this.$().text().trim(), '');
+});
 
-  // Template block usage:
-  this.render(hbs`
-    {{#md-input}}
-      template block text
-    {{/md-input}}
-  `);
+test('label is rendered as expeced', function(assert) {
+  // Set any properties with this.set('myProperty', 'value');
+  // Handle any actions with this.on('myAction', function(val) { ... });
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  this.render(hbs`{{md-input label='First Name'}}`);
+
+  assert.equal(this.$().text().trim(), 'First Name');
+  assert.equal(this.$('label').hasClass('active'), false, 'Active class is not on label, if field is blank');
+  this.$('input').focus();
+  assert.equal(this.$('label').hasClass('active'), true, 'Active class is on label if field has focus');
+
+
+  this.render(hbs`{{md-input label='Last Name' value='North'}}`);
+  assert.equal(this.$('label').hasClass('active'), true, 'Active class is on label if field has a value');
 });
