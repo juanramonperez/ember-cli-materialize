@@ -17,3 +17,7 @@ $roboto-font-path: '/assets/';
   font-family: monospace;
   white-space: pre;
 }
+
+#qunit-modulefilter {
+  @extend .browser-default;
+}

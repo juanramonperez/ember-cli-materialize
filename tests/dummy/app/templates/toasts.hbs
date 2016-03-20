@@ -21,19 +21,19 @@
   <p>Basic notifications can be generated easily</p>
   <p>
     {{md-btn
-      text='Success'
+      label='Success'
       class='green white-text'
       on-click=(action 'successToast')}}
     {{md-btn
-      text='Error'
+      label='Error'
       class='red white-text'
       on-click=(action 'errorToast')}}
     {{md-btn
-      text='Warning'
+      label='Warning'
       class='yellow'
       on-click=(action 'warningToast')}}
     {{md-btn
-      text='Default'
+      label='Default'
       class='grey darken-3 white-text'
       on-click=(action 'defaultToast')}}
   </p>
@@ -44,7 +44,7 @@
   exampleScope=''
   exampleExtension='js'
   horizSplit=8
-  title="Customizing Toasts"
+  label="Customizing Toasts"
   successToast=(action 'successToast')}}
 
   <p><b>Sticky toasts</b> stay on the screen until dismissed by the user (even if the user transitions to another route!). It's also quite easy to customize the icon and colors.</p>

@@ -9,7 +9,7 @@
   </a>
   <div class="hide-on-med-and-down">
   {{#n.menu class='right' as |m|}}
-    {{#m.btn text='Components' as |b|}}
+    {{#m.btn label='Components' as |b|}}
       {{#b.dropdown as |d|}}
         {{d.link-to 'Button' 'button'}}
         {{d.link-to 'Card' 'card'}}
@@ -21,6 +21,7 @@
         {{d.link-to 'Pagination' 'pagination'}}
         {{d.link-to 'Side-Nav' 'sidenav'}}
         {{d.link-to 'Modal' 'modal'}}
+        {{d.link-to 'Tabs' 'tabs'}}
         <li class="divider"></li>
         {{d.link-to 'Toasts' 'toasts'}}
         {{d.link-to 'Breadcrumbs' 'crumb'}}
@@ -41,6 +42,7 @@
     {{sn.link-to 'Pagination' 'pagination'}}
     {{sn.link-to 'Side-Nav' 'sidenav'}}
     {{sn.link-to 'Modal' 'modal'}}
+    {{sn.link-to 'Tabs' 'tabs'}}
     <li class="divider"></li>
     {{sn.link-to 'Toasts' 'toasts'}}
     {{sn.link-to 'Breadcrumbs' 'crumb'}}
