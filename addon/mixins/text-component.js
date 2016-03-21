@@ -10,9 +10,9 @@ export default Mixin.create(FormField, {
   active: false,
   value: null,
   concatenatedProperties: ['inputClassNames', 'labelClassNames'],
-  _classesForInput: computed('inputClassNames', function() {
+  _classesForInput: computed('inputClassNames', '_validateClass', function() {
     let classes = this.get('inputClassNames');
-    return classes.join(' ');
+    return classes.concat([this.get('_validateClass')]).join(' ');
   }),
   _classesForLabel: computed('labelClassNames', function() {
     return this.get('labelClassNames').join(' ');
